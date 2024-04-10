@@ -7,6 +7,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{210AA928-4DF
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Seedr.Control", "src\Control\Seedr.Control.csproj", "{5CF8A160-B70D-4965-A88B-3DC840275421}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Seedr.Montitor", "src\Monitor\Seedr.Montitor.csproj", "{D0C25EAC-C43A-4FF5-B1C8-7CFA4B0B979F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,11 +19,17 @@ Global
 		{5CF8A160-B70D-4965-A88B-3DC840275421}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5CF8A160-B70D-4965-A88B-3DC840275421}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5CF8A160-B70D-4965-A88B-3DC840275421}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0C25EAC-C43A-4FF5-B1C8-7CFA4B0B979F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0C25EAC-C43A-4FF5-B1C8-7CFA4B0B979F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0C25EAC-C43A-4FF5-B1C8-7CFA4B0B979F}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{D0C25EAC-C43A-4FF5-B1C8-7CFA4B0B979F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0C25EAC-C43A-4FF5-B1C8-7CFA4B0B979F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{5CF8A160-B70D-4965-A88B-3DC840275421} = {210AA928-4DFE-4A35-AFE3-CD39486275F2}
+		{D0C25EAC-C43A-4FF5-B1C8-7CFA4B0B979F} = {210AA928-4DFE-4A35-AFE3-CD39486275F2}
 	EndGlobalSection
 EndGlobal
