@@ -24,6 +24,6 @@ AnsiConsole.Status()
     .Start("Running...", ctx =>
     {
         ctx.Spinner(Spinner.Known.Dots);
-        
+
         Thread.Sleep(Timeout.Infinite);
     });

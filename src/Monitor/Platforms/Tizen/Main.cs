@@ -2,7 +2,7 @@ using System;
 using Microsoft.Maui;
 using Microsoft.Maui.Hosting;
 
-namespace Seedr.Montitor;
+namespace Seedr.Monitor;
 
 class Program : MauiApplication
 {

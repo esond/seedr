@@ -1,11 +1,23 @@
-﻿namespace Seedr.Montitor;
+namespace Seedr.Monitor;
 
 public partial class App : Application
 {
-	public App()
-	{
-		InitializeComponent();
+    public App()
+    {
+        InitializeComponent();
 
-		MainPage = new AppShell();
-	}
+        MainPage = AppBootstrapper.CreateMainPage();
+    }
+
+    protected override void OnStart()
+    {
+    }
+
+    protected override void OnSleep()
+    {
+    }
+
+    protected override void OnResume()
+    {
+    }
 }

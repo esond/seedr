@@ -7,7 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{210AA928-4DF
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Seedr.Control", "src\Control\Seedr.Control.csproj", "{5CF8A160-B70D-4965-A88B-3DC840275421}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Seedr.Montitor", "src\Monitor\Seedr.Montitor.csproj", "{D0C25EAC-C43A-4FF5-B1C8-7CFA4B0B979F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Seedr.Monitor", "src\Monitor\Seedr.Monitor.csproj", "{D0C25EAC-C43A-4FF5-B1C8-7CFA4B0B979F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
