@@ -9,12 +9,16 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Seedr.Control", "src\Contro
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Seedr.Monitor", "src\Monitor\Seedr.Monitor.csproj", "{D0C25EAC-C43A-4FF5-B1C8-7CFA4B0B979F}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "_build", "build\_build.csproj", "{98ABC887-B40E-4D59-9D04-0C5CEBF965F8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{98ABC887-B40E-4D59-9D04-0C5CEBF965F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98ABC887-B40E-4D59-9D04-0C5CEBF965F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5CF8A160-B70D-4965-A88B-3DC840275421}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5CF8A160-B70D-4965-A88B-3DC840275421}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5CF8A160-B70D-4965-A88B-3DC840275421}.Release|Any CPU.ActiveCfg = Release|Any CPU
