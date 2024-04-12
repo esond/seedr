@@ -1,7 +1,7 @@
 using System.Reactive;
-using System.Reactive.Concurrency;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
+using Microsoft.Extensions.Logging;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
 
@@ -9,11 +9,8 @@ namespace Seedr.Monitor;
 
 public class MainViewModel : ReactiveObject, IActivatableViewModel
 {
-
-    public MainViewModel()
+    public MainViewModel(ILogger<MainViewModel> logger)
     {
-        IncrementCountCommand = ReactiveCommand.Create(IncrementCount);
-
         this.WhenAnyValue(vm => vm.Count)
             .Select(c => c switch
             {
@@ -25,36 +22,33 @@ public class MainViewModel : ReactiveObject, IActivatableViewModel
 
         this.WhenActivated(disposables =>
         {
-            // Just log the ViewModel's activation
-            // https://github.com/kentcb/YouIandReactiveUI/blob/master/ViewModels/Samples/Chapter%2018/Sample%2004/ChildViewModel.cs
-            Console.WriteLine(
-                $"[vm {Environment.CurrentManagedThreadId}]: " +
-                "ViewModel activated");
+            logger.LogDebug("[vm {ThreadId}]: ViewModel activated", Environment.CurrentManagedThreadId);
 
-            // Just log the ViewModel's deactivation
-            // https://github.com/kentcb/YouIandReactiveUI/blob/master/ViewModels/Samples/Chapter%2018/Sample%2004/ChildViewModel.cs
             Disposable
-                .Create(
-                    () =>
-                        Console.WriteLine(
-                            $"[vm {Environment.CurrentManagedThreadId}]: " +
-                            "ViewModel deactivated"))
+                .Create(() =>
+                    logger.LogDebug("[vm {ThreadId}]: ViewModel deactivated", Environment.CurrentManagedThreadId))
                 .DisposeWith(disposables);
         });
     }
+    public ViewModelActivator Activator { get; } = new();
 
-    public ReactiveCommand<Unit, Unit> IncrementCountCommand { get; }
+    // TODO: commands should send an message to the controller, which will report back with current settings that we display.
+    public ReactiveCommand<Unit, int> IncrementCountCommand => ReactiveCommand.Create(() => Count++);
 
-    public void IncrementCount()
-    {
-        Count++;
-    }
+    public ReactiveCommand<Unit, int> DecreaseSpeedCommand => ReactiveCommand.Create(() => Speed--);
+    public ReactiveCommand<Unit, int> IncreaseSpeedCommand => ReactiveCommand.Create(() => Speed++);
+    public ReactiveCommand<Unit, int> DecreaseSeedRateCommand => ReactiveCommand.Create(() => SeedRate--);
+    public ReactiveCommand<Unit, int> IncreaseSeedRateCommand => ReactiveCommand.Create(() => SeedRate++);
 
     [Reactive]
     public int Count { get; set; }
 
+    [Reactive]
+    public int Speed { get; set; }
+
+    [Reactive]
+    public int SeedRate { get; set; }
+
     [ObservableAsProperty]
     public string? CounterText { get; }
-
-    public ViewModelActivator Activator { get; } = new();
 }
