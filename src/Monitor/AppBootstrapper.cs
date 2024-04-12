@@ -16,12 +16,12 @@ public static class AppBootstrapper
         var router = new RoutingState();
         var screen = new AppBootstrapScreen(router);
         Locator.CurrentMutable.RegisterConstant(screen, typeof(IScreen));
-        Locator.CurrentMutable.Register(() => new MainPage(), typeof(IViewFor<MainViewModel>));
+        //Locator.CurrentMutable.Register(() => new MainPage(), typeof(IViewFor<MainViewModel>));
 
-        router
-            .NavigateAndReset
-            .Execute(new MainViewModel("Seedr"))
-            .Subscribe();
+        //router
+        //    .NavigateAndReset
+        //    .Execute(new MainViewModel("Seedr"))
+        //    .Subscribe();
 
         return builder;
     }

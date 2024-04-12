@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<local:ContentPageBase x:Class="Seedr.Monitor.MainPage"
-             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:Seedr.Monitor"
-             xmlns:maui="clr-namespace:ReactiveUI.Maui;assembly=ReactiveUI.Maui"
-             x:TypeArguments="local:MainViewModel">
+<maui:ReactiveContentPage
+    x:TypeArguments="local:MainViewModel"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:maui="clr-namespace:ReactiveUI.Maui;assembly=ReactiveUI.Maui"
+    xmlns:local="clr-namespace:Seedr.Monitor"
+    x:DataType="local:MainViewModel"
+    x:Class="Seedr.Monitor.MainPage">
 
     <ScrollView>
         <VerticalStackLayout
@@ -27,14 +29,13 @@
                 SemanticProperties.HeadingLevel="Level2"
                 SemanticProperties.Description="Welcome to dot net Multi platform App UI" />
 
-            <Label x:Name="TestLabel" FontSize="10" />
-
             <Button
                 x:Name="CounterButton"
                 SemanticProperties.Hint="Counts the number of times you click"
+                Text="{Binding CounterText}"
                 Command="{Binding IncrementCountCommand}"
                 HorizontalOptions="Fill" />
         </VerticalStackLayout>
     </ScrollView>
 
-</local:ContentPageBase>
+</maui:ReactiveContentPage>

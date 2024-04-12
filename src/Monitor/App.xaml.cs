@@ -6,7 +6,7 @@ public partial class App : Application
     {
         InitializeComponent();
 
-        MainPage = AppBootstrapper.CreateMainPage();
+        MainPage = new AppShell();
     }
 
     protected override void OnStart()

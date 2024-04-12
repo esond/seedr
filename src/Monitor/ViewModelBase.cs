@@ -6,26 +6,6 @@ using Splat;
 
 namespace Seedr.Monitor;
 
-//public abstract class ViewModelBase : INotifyPropertyChanged
-//{
-//    public event PropertyChangedEventHandler? PropertyChanged;
-
-//    protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
-//    {
-//        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-//    }
-
-//    protected bool SetField<T>(ref T field, T value, [CallerMemberName] string? propertyName = null)
-//    {
-//        if (EqualityComparer<T>.Default.Equals(field, value))
-//            return false;
-
-//        field = value;
-//        OnPropertyChanged(propertyName);
-//        return true;
-//    }
-//}
-
 /// <summary>
 /// A base for all the different view models used throughout the application.
 /// </summary>
@@ -67,7 +47,7 @@ public abstract class ViewModelBase : ReactiveObject, IRoutableViewModel, IActiv
     public ViewModelActivator Activator { get; } = new ViewModelActivator();
 
     ///// <summary>
-    ///// Gets a interaction which will show an alert.
+    ///// Gets an interaction which will show an alert.
     ///// </summary>
     //public Interaction<AlertViewModel, Unit> ShowAlert { get; }
 

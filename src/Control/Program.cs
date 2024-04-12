@@ -17,7 +17,7 @@ var settingsPanel = new Panel(settingsTable)
 };
 
 
-AnsiConsole.Live(settingsPanel)
+await AnsiConsole.Live(settingsPanel)
     .Start(_ => Task.CompletedTask);
 
 AnsiConsole.Status()
