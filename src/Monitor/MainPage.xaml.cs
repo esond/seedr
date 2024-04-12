@@ -1,24 +1,24 @@
-﻿namespace Seedr.Montitor;
+using ReactiveUI;
+using ReactiveUI.Maui;
 
-public partial class MainPage : ContentPage
+namespace Seedr.Monitor;
+
+public partial class MainPage : ReactiveContentPage<MainViewModel>
 {
-	int count = 0;
+    public MainPage(MainViewModel viewModel)
+    {
+        ViewModel = viewModel;
 
-	public MainPage()
-	{
-		InitializeComponent();
-	}
+        InitializeComponent();
 
-	private void OnCounterClicked(object sender, EventArgs e)
-	{
-		count++;
+        this.WhenActivated(disposables =>
+        {
+            //this.OneWayBind(ViewModel, x => x.CounterText, x => x.CounterButton.Text, x => x).DisposeWith(disposables);
+            //this.OneWayBind(ViewModel, x => x.TestText, x => x.TestLabel.Text, x => x).DisposeWith(disposables);
 
-		if (count == 1)
-			CounterBtn.Text = $"Clicked {count} time";
-		else
-			CounterBtn.Text = $"Clicked {count} times";
-
-		SemanticScreenReader.Announce(CounterBtn.Text);
-	}
+            //this.BindCommand(ViewModel, x => x.IncrementCountCommand, x => x.CounterButton.Command)
+            //    .DisposeWith(disposables);
+        });
+    }
 }
 

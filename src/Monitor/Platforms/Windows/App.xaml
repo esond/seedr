@@ -1,8 +1,8 @@
 ﻿<maui:MauiWinUIApplication
-    x:Class="Seedr.Montitor.WinUI.App"
+    x:Class="Seedr.Monitor.WinUI.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:maui="using:Microsoft.Maui"
-    xmlns:local="using:Seedr.Montitor.WinUI">
+    xmlns:local="using:Seedr.Monitor.WinUI">
 
 </maui:MauiWinUIApplication>

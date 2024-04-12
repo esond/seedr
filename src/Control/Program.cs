@@ -17,13 +17,13 @@ var settingsPanel = new Panel(settingsTable)
 };
 
 
-AnsiConsole.Live(settingsPanel)
+await AnsiConsole.Live(settingsPanel)
     .Start(_ => Task.CompletedTask);
 
 AnsiConsole.Status()
     .Start("Running...", ctx =>
     {
         ctx.Spinner(Spinner.Known.Dots);
-        
+
         Thread.Sleep(Timeout.Infinite);
     });
