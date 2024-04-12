@@ -1,17 +1,27 @@
-using System;
+using System.Collections.Generic;
 using System.Linq;
+using Hexagrams.Nuke.Components;
 using Nuke.Common;
 using Nuke.Common.CI;
-using Nuke.Common.Execution;
 using Nuke.Common.IO;
 using Nuke.Common.ProjectModel;
-using Nuke.Common.Tooling;
-using Nuke.Common.Utilities.Collections;
-using static Nuke.Common.EnvironmentInfo;
-using static Nuke.Common.IO.FileSystemTasks;
-using static Nuke.Common.IO.PathConstruction;
+using Nuke.Common.Tools.DotNet;
 
-class Build : NukeBuild
+// ReSharper disable RedundantExtendsListEntry
+// ReSharper disable InconsistentNaming
+
+[DotNetVerbosityMapping]
+[ShutdownDotNetAfterServerBuild]
+partial class Build : NukeBuild,
+    IHasGitRepository,
+    IHasVersioning,
+    IRestore,
+    IFormat,
+    ICompile,
+    ITest,
+    IReportCoverage,
+    IPack,
+    IPush
 {
     /// Support plugins are available for:
     ///   - JetBrains ReSharper        https://nuke.build/resharper
@@ -19,26 +29,21 @@ class Build : NukeBuild
     ///   - Microsoft VisualStudio     https://nuke.build/visualstudio
     ///   - Microsoft VSCode           https://nuke.build/vscode
 
-    public static int Main () => Execute<Build>(x => x.Compile);
+    public static int Main() => Execute<Build>(x => ((ICompile) x).Compile);
 
-    [Parameter("Configuration to build - Default is 'Debug' (local) or 'Release' (server)")]
-    readonly Configuration Configuration = IsLocalBuild ? Configuration.Debug : Configuration.Release;
+    [Solution]
+    readonly Solution Solution;
+    Solution IHasSolution.Solution => Solution;
 
-    Target Clean => _ => _
-        .Before(Restore)
-        .Executes(() =>
-        {
-        });
+    public IEnumerable<AbsolutePath> ExcludedFormatPaths => Enumerable.Empty<AbsolutePath>();
 
-    Target Restore => _ => _
-        .Executes(() =>
-        {
-        });
+    public bool RunFormatAnalyzers => true;
 
-    Target Compile => _ => _
-        .DependsOn(Restore)
-        .Executes(() =>
-        {
-        });
+    Target ICompile.Compile => t => t
+        .Inherit<ICompile>()
+        .DependsOn<IFormat>(x => x.VerifyFormat);
 
+    bool IReportCoverage.CreateCoverageHtmlReport => true;
+
+    IEnumerable<Project> ITest.TestProjects => Partition.GetCurrent(Solution.GetAllProjects("*.Tests"));
 }
