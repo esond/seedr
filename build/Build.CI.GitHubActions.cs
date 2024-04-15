@@ -5,6 +5,7 @@ using Nuke.Common.CI.GitHubActions;
     "continuous",
     GitHubActionsImage.WindowsLatest,
     GitHubActionsImage.UbuntuLatest,
+    GitHubActionsImage.MacOsLatest,
     FetchDepth = 0,
     OnPullRequestBranches = ["main"],
     OnPushBranches = ["main", "release/v*"],
