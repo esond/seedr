@@ -10,8 +10,6 @@ using Nuke.Common.CI.GitHubActions;
     OnPullRequestBranches = ["main"],
     OnPushBranches = ["main", "release/v*"],
     PublishArtifacts = true,
-    InvokedTargets = [nameof(ITest.Test)],
+    InvokedTargets = [nameof(Setup), nameof(ITest.Test)],
     CacheKeyFiles = ["global.json", "src/**/*.csproj"])]
-partial class Build
-{
-}
+partial class Build;

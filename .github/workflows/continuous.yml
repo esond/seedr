@@ -40,8 +40,8 @@ jobs:
             .nuke/temp
             ~/.nuget/packages
           key: ${{ runner.os }}-${{ hashFiles('global.json', 'src/**/*.csproj') }}
-      - name: 'Run: Test'
-        run: ./build.cmd Test
+      - name: 'Run: Setup, Test'
+        run: ./build.cmd Setup Test
       - name: 'Publish: test-results'
         uses: actions/upload-artifact@v3
         with:
@@ -66,8 +66,8 @@ jobs:
             .nuke/temp
             ~/.nuget/packages
           key: ${{ runner.os }}-${{ hashFiles('global.json', 'src/**/*.csproj') }}
-      - name: 'Run: Test'
-        run: ./build.cmd Test
+      - name: 'Run: Setup, Test'
+        run: ./build.cmd Setup Test
       - name: 'Publish: test-results'
         uses: actions/upload-artifact@v3
         with:
@@ -92,8 +92,8 @@ jobs:
             .nuke/temp
             ~/.nuget/packages
           key: ${{ runner.os }}-${{ hashFiles('global.json', 'src/**/*.csproj') }}
-      - name: 'Run: Test'
-        run: ./build.cmd Test
+      - name: 'Run: Setup, Test'
+        run: ./build.cmd Setup Test
       - name: 'Publish: test-results'
         uses: actions/upload-artifact@v3
         with:

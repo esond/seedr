@@ -89,6 +89,7 @@
               "Push",
               "ReportCoverage",
               "Restore",
+              "Setup",
               "Test",
               "VerifyFormat"
             ]
@@ -111,6 +112,7 @@
               "Push",
               "ReportCoverage",
               "Restore",
+              "Setup",
               "Test",
               "VerifyFormat"
             ]

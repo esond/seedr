@@ -6,6 +6,7 @@ using Nuke.Common.CI;
 using Nuke.Common.IO;
 using Nuke.Common.ProjectModel;
 using Nuke.Common.Tools.DotNet;
+using static Nuke.Common.Tools.DotNet.DotNetTasks;
 
 // ReSharper disable RedundantExtendsListEntry
 // ReSharper disable InconsistentNaming
@@ -38,6 +39,10 @@ partial class Build : NukeBuild,
     public IEnumerable<AbsolutePath> ExcludedFormatPaths => Enumerable.Empty<AbsolutePath>();
 
     public bool RunFormatAnalyzers => true;
+
+    Target Setup => t => t
+        .Before<IClean>()
+        .Executes(() => DotNet("workload restore"));
 
     Target ICompile.Compile => t => t
         .Inherit<ICompile>()
