@@ -39,8 +39,7 @@
 
             <VerticalStackLayout Grid.Column="1">
                 <Label Text="Log" />
-                <Editor Placeholder="Enter your response here"
-                        HeightRequest="250"
+                <Editor HeightRequest="250"
                         IsEnabled="false" />
             </VerticalStackLayout>
         </Grid>
