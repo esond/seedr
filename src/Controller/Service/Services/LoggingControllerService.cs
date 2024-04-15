@@ -2,7 +2,7 @@ using Seedr.Controller.Interface;
 using Seedr.Controller.Interface.Contracts;
 using Seedr.Shared.Contracts;
 
-namespace Seeder.Controller.Service.Services;
+namespace Seedr.Controller.Service.Services;
 
 public class LoggingControllerService(IControllerService innerService, ILogger<LoggingControllerService> logger)
     : IControllerService

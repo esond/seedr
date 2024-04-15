@@ -2,9 +2,9 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 using ProtoBuf.Grpc.Server;
-using Seeder.Controller.Service.Data;
-using Seeder.Controller.Service.Services;
 using Seedr.Controller.Interface;
+using Seedr.Controller.Service.Data;
+using Seedr.Controller.Service.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 

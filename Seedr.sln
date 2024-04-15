@@ -17,7 +17,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Controller", "Controller", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Seedr.Controller.Interface", "src\Controller\Interface\Seedr.Controller.Interface.csproj", "{83473473-2027-417F-A7D7-9D36A918F159}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Seeder.Controller.Service", "src\Controller\Service\Seeder.Controller.Service.csproj", "{F66253C2-6587-4B07-B1F8-26F390A5B248}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Seedr.Controller.Service", "src\Controller\Service\Seedr.Controller.Service.csproj", "{F66253C2-6587-4B07-B1F8-26F390A5B248}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

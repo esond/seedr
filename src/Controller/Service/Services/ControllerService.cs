@@ -1,9 +1,9 @@
-using Seeder.Controller.Service.Data;
 using Seedr.Controller.Interface;
 using Seedr.Controller.Interface.Contracts;
+using Seedr.Controller.Service.Data;
 using Seedr.Shared.Contracts;
 
-namespace Seeder.Controller.Service.Services;
+namespace Seedr.Controller.Service.Services;
 
 public class ControllerService(ISettingsStore settings) : IControllerService
 {

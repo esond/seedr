@@ -1,6 +1,6 @@
 using Seedr.Shared.Contracts;
 
-namespace Seeder.Controller.Service.Data;
+namespace Seedr.Controller.Service.Data;
 
 public interface ISettingsStore
 {
