@@ -1,12 +1,13 @@
 using Seedr.Controller.Interface;
-using Seedr.Shared;
+using Seedr.Controller.Interface.Contracts;
+using Seedr.Shared.Contracts;
 
 namespace Seeder.Controller.Service.Services;
 
 public class LoggingControllerService(IControllerService innerService, ILogger<LoggingControllerService> logger)
     : IControllerService
 {
-    public async ValueTask<SeederSettings> SetFanSpeed(SetFanSpeedCommand command)
+    public async Task<SeederSettings> SetFanSpeed(SetFanSpeedCommand command)
     {
         var settings = await innerService.SetFanSpeed(command);
 
@@ -15,7 +16,7 @@ public class LoggingControllerService(IControllerService innerService, ILogger<L
         return settings;
     }
 
-    public async ValueTask<SeederSettings> SetSeedRate(SetSeedRateCommand command)
+    public async Task<SeederSettings> SetSeedRate(SetSeedRateCommand command)
     {
         var settings = await innerService.SetSeedRate(command);
 

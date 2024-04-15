@@ -1,18 +1,19 @@
 using Seeder.Controller.Service.Data;
 using Seedr.Controller.Interface;
-using Seedr.Shared;
+using Seedr.Controller.Interface.Contracts;
+using Seedr.Shared.Contracts;
 
 namespace Seeder.Controller.Service.Services;
 
 public class ControllerService(ISettingsStore settings) : IControllerService
 {
-    public async ValueTask<SeederSettings> SetFanSpeed(SetFanSpeedCommand command)
+    public Task<SeederSettings> SetFanSpeed(SetFanSpeedCommand command)
     {
-        return await settings.SetFanSpeed(command.FanSpeed);
+        return settings.SetFanSpeed(command.FanSpeed);
     }
 
-    public async ValueTask<SeederSettings> SetSeedRate(SetSeedRateCommand command)
+    public Task<SeederSettings> SetSeedRate(SetSeedRateCommand command)
     {
-        return await settings.SetSeedRate(command.SeedRate);
+        return settings.SetSeedRate(command.SeedRate);
     }
 }

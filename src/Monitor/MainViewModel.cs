@@ -5,7 +5,7 @@ using Microsoft.Extensions.Logging;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
 using Seedr.Monitor.Infrastructure;
-using Seedr.Shared;
+using Seedr.Shared.Contracts;
 
 namespace Seedr.Monitor;
 

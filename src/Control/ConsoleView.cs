@@ -1,4 +1,4 @@
-using Seedr.Shared;
+using Seedr.Shared.Contracts;
 using Spectre.Console;
 
 namespace Seedr.Control;

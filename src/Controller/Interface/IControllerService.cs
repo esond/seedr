@@ -1,5 +1,6 @@
 using System.ServiceModel;
-using Seedr.Shared;
+using Seedr.Controller.Interface.Contracts;
+using Seedr.Shared.Contracts;
 
 namespace Seedr.Controller.Interface;
 
@@ -7,8 +8,8 @@ namespace Seedr.Controller.Interface;
 public interface IControllerService
 {
     [OperationContract]
-    ValueTask<SeederSettings> SetFanSpeed(SetFanSpeedCommand command);
+    Task<SeederSettings> SetFanSpeed(SetFanSpeedCommand command);
 
     [OperationContract]
-    ValueTask<SeederSettings> SetSeedRate(SetSeedRateCommand command);
+    Task<SeederSettings> SetSeedRate(SetSeedRateCommand command);
 }

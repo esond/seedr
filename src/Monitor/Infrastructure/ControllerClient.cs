@@ -1,7 +1,8 @@
 using Grpc.Net.Client;
 using ProtoBuf.Grpc.Client;
 using Seedr.Controller.Interface;
-using Seedr.Shared;
+using Seedr.Controller.Interface.Contracts;
+using Seedr.Shared.Contracts;
 
 namespace Seedr.Monitor.Infrastructure;
 
@@ -12,14 +13,14 @@ public interface IControllerClient
     Task<SeederSettings> SetSeedRate(double seedRate);
 }
 
-public class ControllerClient : IControllerClient
+public class ControllerClient(string controllerUrl) : IControllerClient
 {
     public async Task<SeederSettings> SetFanSpeed(int fanSpeed)
     {
-        using var http = GrpcChannel.ForAddress("http://localhost:5000");
+        using var http = GrpcChannel.ForAddress(controllerUrl);
         var controllerService = http.CreateGrpcService<IControllerService>();
 
-        var settings = await controllerService.SetFanSpeed(new SetFanSpeedCommand // todo: records?
+        var settings = await controllerService.SetFanSpeed(new SetFanSpeedCommand
         {
             FanSpeed = fanSpeed
         });
@@ -29,10 +30,10 @@ public class ControllerClient : IControllerClient
 
     public async Task<SeederSettings> SetSeedRate(double seedRate)
     {
-        using var http = GrpcChannel.ForAddress("http://localhost:5000");
+        using var http = GrpcChannel.ForAddress(controllerUrl);
         var controllerService = http.CreateGrpcService<IControllerService>();
 
-        var settings = await controllerService.SetSeedRate(new SetSeedRateCommand // todo: records?
+        var settings = await controllerService.SetSeedRate(new SetSeedRateCommand
         {
             SeedRate = seedRate
         });
