@@ -17,14 +17,7 @@ public class MainViewModel : ReactiveObject, IActivatableViewModel
     {
         _controllerClient = controllerClient;
 
-        this.WhenAnyValue(vm => vm.Count)
-            .Select(c => c switch
-            {
-                0 => "Click me",
-                1 => "Clicked 1 time",
-                _ => $"Clicked {c} times"
-            })
-            .ToPropertyEx(this, vm => vm.CounterText);
+        //this.WhenAnyValue(vm => vm.SeederSettings.FanSpeed, vm => vm.SeederSettings.SeedRate);
 
         this.WhenActivated(disposables =>
         {
@@ -39,28 +32,31 @@ public class MainViewModel : ReactiveObject, IActivatableViewModel
     public ViewModelActivator Activator { get; } = new();
 
     // TODO: commands should send a message to the controller, which will report back with current settings that we display.
-    public ReactiveCommand<Unit, int> IncrementCountCommand => ReactiveCommand.Create(() => Count++);
+    public ReactiveCommand<Unit, int> DecreaseFanSpeedCommand => ReactiveCommand.Create(() => SeederSettings.FanSpeed--);
 
-    public ReactiveCommand<Unit, int> DecreaseFanSpeedCommand => ReactiveCommand.Create(() => FanSpeed--);
+    public ReactiveCommand<Unit, int> IncreaseFanSpeedCommand => ReactiveCommand.Create(() => SeederSettings.FanSpeed++);
 
-    public ReactiveCommand<Unit, int> IncreaseFanSpeedCommand => ReactiveCommand.Create(() => FanSpeed++);
+    public ReactiveCommand<Unit, double> DecreaseSeedRateCommand => ReactiveCommand.Create(() => SeederSettings.SeedRate--);
 
-    public ReactiveCommand<Unit, double> DecreaseSeedRateCommand => ReactiveCommand.Create(() => SeedRate--);
-
-    public ReactiveCommand<Unit, double> IncreaseSeedRateCommand => ReactiveCommand.Create(() => SeedRate++);
+    public ReactiveCommand<Unit, double> IncreaseSeedRateCommand => ReactiveCommand.Create(() => SeederSettings.SeedRate++);
 
     public ReactiveCommand<Unit, SeederSettings> TestCommand =>
         ReactiveCommand.CreateFromTask(() => _controllerClient.SetFanSpeed(Random.Shared.Next(10)));
 
     [Reactive]
-    public int Count { get; set; }
+    public SeederSettingsModel SeederSettings { get; set; } = new(new SeederSettings());
+}
+
+public class SeederSettingsModel(SeederSettings settings) : ReactiveObject
+{
+    [Reactive]
+    public int FanSpeed { get; set; } = settings.FanSpeed;
 
     [Reactive]
-    public int FanSpeed { get; set; }
+    public double SeedRate { get; set; } = settings.SeedRate;
 
-    [Reactive]
-    public double SeedRate { get; set; }
-
-    [ObservableAsProperty]
-    public string? CounterText { get; }
+    public SeederSettings ToContract()
+    {
+        return new SeederSettings { FanSpeed = FanSpeed, SeedRate = SeedRate };
+    }
 }

@@ -16,12 +16,12 @@
             </Grid.ColumnDefinitions>
 
             <VerticalStackLayout Grid.Column="0">
-                <Label Text="Speed (kph)" />
+                <Label Text="Fan speed (RPM)" />
 
                 <HorizontalStackLayout>
                     <Button Text="-"
                             Command="{Binding DecreaseFanSpeedCommand}" />
-                    <Label Text="{Binding FanSpeed}" />
+                    <Label Text="{Binding SeederSettings.FanSpeed}" />
                     <Button Text="+"
                             Command="{Binding IncreaseFanSpeedCommand}" />
                 </HorizontalStackLayout>
@@ -31,20 +31,12 @@
 
                     <Button Text="-"
                             Command="{Binding DecreaseSeedRateCommand}" />
-                    <Label Text="{Binding SeedRate}" />
+                    <Label Text="{Binding SeederSettings.SeedRate}" />
                     <Button Text="+"
                             Command="{Binding IncreaseSeedRateCommand}" />
                 </HorizontalStackLayout>
 
                 <Button
-                    x:Name="CounterButton"
-                    SemanticProperties.Hint="Counts the number of times you click"
-                    Text="{Binding CounterText}"
-                    Command="{Binding IncrementCountCommand}"
-                    HorizontalOptions="Fill" />
-
-                <Button
-                    SemanticProperties.Hint="Counts the number of times you click"
                     Text="Test"
                     Command="{Binding TestCommand}"
                     HorizontalOptions="Fill" />

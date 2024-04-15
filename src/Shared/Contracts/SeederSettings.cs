@@ -6,7 +6,7 @@ namespace Seedr.Shared.Contracts;
 public record SeederSettings
 {
     /// <summary>
-    /// The speed of the air seeder in revolutions per minute (RPM)
+    /// The speed of the air seeder's fan in revolutions per minute (RPM)
     /// </summary>
     [DataMember(Order = 1)]
     public int FanSpeed { get; set; }
