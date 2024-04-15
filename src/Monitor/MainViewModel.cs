@@ -4,13 +4,19 @@ using System.Reactive.Linq;
 using Microsoft.Extensions.Logging;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
+using Seedr.Monitor.Infrastructure;
+using Seedr.Shared;
 
 namespace Seedr.Monitor;
 
 public class MainViewModel : ReactiveObject, IActivatableViewModel
 {
-    public MainViewModel(ILogger<MainViewModel> logger)
+    private readonly IControllerClient _controllerClient;
+
+    public MainViewModel(IControllerClient controllerClient, ILogger<MainViewModel> logger)
     {
+        _controllerClient = controllerClient;
+
         this.WhenAnyValue(vm => vm.Count)
             .Select(c => c switch
             {
@@ -32,22 +38,28 @@ public class MainViewModel : ReactiveObject, IActivatableViewModel
     }
     public ViewModelActivator Activator { get; } = new();
 
-    // TODO: commands should send an message to the controller, which will report back with current settings that we display.
+    // TODO: commands should send a message to the controller, which will report back with current settings that we display.
     public ReactiveCommand<Unit, int> IncrementCountCommand => ReactiveCommand.Create(() => Count++);
 
-    public ReactiveCommand<Unit, int> DecreaseSpeedCommand => ReactiveCommand.Create(() => Speed--);
-    public ReactiveCommand<Unit, int> IncreaseSpeedCommand => ReactiveCommand.Create(() => Speed++);
-    public ReactiveCommand<Unit, int> DecreaseSeedRateCommand => ReactiveCommand.Create(() => SeedRate--);
-    public ReactiveCommand<Unit, int> IncreaseSeedRateCommand => ReactiveCommand.Create(() => SeedRate++);
+    public ReactiveCommand<Unit, int> DecreaseFanSpeedCommand => ReactiveCommand.Create(() => FanSpeed--);
+
+    public ReactiveCommand<Unit, int> IncreaseFanSpeedCommand => ReactiveCommand.Create(() => FanSpeed++);
+
+    public ReactiveCommand<Unit, double> DecreaseSeedRateCommand => ReactiveCommand.Create(() => SeedRate--);
+
+    public ReactiveCommand<Unit, double> IncreaseSeedRateCommand => ReactiveCommand.Create(() => SeedRate++);
+
+    public ReactiveCommand<Unit, SeederSettings> TestCommand =>
+        ReactiveCommand.CreateFromTask(() => _controllerClient.SetFanSpeed(Random.Shared.Next(10)));
 
     [Reactive]
     public int Count { get; set; }
 
     [Reactive]
-    public int Speed { get; set; }
+    public int FanSpeed { get; set; }
 
     [Reactive]
-    public int SeedRate { get; set; }
+    public double SeedRate { get; set; }
 
     [ObservableAsProperty]
     public string? CounterText { get; }

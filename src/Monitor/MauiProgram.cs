@@ -1,4 +1,5 @@
 using Microsoft.Extensions.Logging;
+using Seedr.Monitor.Infrastructure;
 
 namespace Seedr.Monitor;
 
@@ -9,7 +10,6 @@ public static class MauiProgram
         var builder = MauiApp.CreateBuilder();
         builder
             .UseMauiApp<App>()
-            //.UseAppBootstrapper()
             .ConfigureFonts(fonts =>
             {
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -18,6 +18,8 @@ public static class MauiProgram
 
         builder.Services.AddSingleton<MainPage>();
         builder.Services.AddSingleton<MainViewModel>();
+
+        builder.Services.AddTransient<IControllerClient, ControllerClient>();
 
 #if DEBUG
         builder.Logging.AddDebug();
