@@ -20,10 +20,10 @@
 
                 <HorizontalStackLayout>
                     <Button Text="-"
-                            Command="{Binding DecreaseSpeedCommand}" />
-                    <Label Text="{Binding Speed}" />
+                            Command="{Binding DecreaseFanSpeedCommand}" />
+                    <Label Text="{Binding FanSpeed}" />
                     <Button Text="+"
-                            Command="{Binding IncreaseSpeedCommand}" />
+                            Command="{Binding IncreaseFanSpeedCommand}" />
                 </HorizontalStackLayout>
 
                 <Label Text="Seed rate (kg/ha)" />
@@ -41,6 +41,12 @@
                     SemanticProperties.Hint="Counts the number of times you click"
                     Text="{Binding CounterText}"
                     Command="{Binding IncrementCountCommand}"
+                    HorizontalOptions="Fill" />
+
+                <Button
+                    SemanticProperties.Hint="Counts the number of times you click"
+                    Text="Test"
+                    Command="{Binding TestCommand}"
                     HorizontalOptions="Fill" />
             </VerticalStackLayout>
 
