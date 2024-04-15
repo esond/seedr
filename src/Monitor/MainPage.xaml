@@ -35,11 +35,6 @@
                     <Button Text="+"
                             Command="{Binding IncreaseSeedRateCommand}" />
                 </HorizontalStackLayout>
-
-                <Button
-                    Text="Test"
-                    Command="{Binding TestCommand}"
-                    HorizontalOptions="Fill" />
             </VerticalStackLayout>
 
             <VerticalStackLayout Grid.Column="1">
