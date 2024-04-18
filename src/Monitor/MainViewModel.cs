@@ -6,14 +6,15 @@ using Seedr.Shared.Contracts;
 
 namespace Seedr.Monitor;
 
-public class MainViewModel(IControllerClient controllerClient) : ViewModelBase
+public class MainViewModel(ControllerClientFactory clientFactory) : ViewModelBase
 {
     [Reactive]
     public SeederSettingsModel SeederSettings { get; set; } = new(new SeederSettings());
 
     public ReactiveCommand<Unit, Unit> DecreaseFanSpeedCommand => ReactiveCommand.CreateFromTask(async () =>
     {
-        var settings = await controllerClient.SetFanSpeed(SeederSettings.FanSpeed - 100);
+        var client = clientFactory.Create();
+        var settings = await client.SetFanSpeed(SeederSettings.FanSpeed - 100);
 
         SeederSettings = new SeederSettingsModel(settings);
 
@@ -22,7 +23,8 @@ public class MainViewModel(IControllerClient controllerClient) : ViewModelBase
 
     public ReactiveCommand<Unit, Unit> IncreaseFanSpeedCommand => ReactiveCommand.CreateFromTask(async () =>
     {
-        var settings = await controllerClient.SetFanSpeed(SeederSettings.FanSpeed + 100);
+        var client = clientFactory.Create();
+        var settings = await client.SetFanSpeed(SeederSettings.FanSpeed + 100);
 
         SeederSettings = new SeederSettingsModel(settings);
 
@@ -31,7 +33,8 @@ public class MainViewModel(IControllerClient controllerClient) : ViewModelBase
 
     public ReactiveCommand<Unit, Unit> DecreaseSeedRateCommand => ReactiveCommand.CreateFromTask(async () =>
     {
-        var settings = await controllerClient.SetSeedRate(SeederSettings.SeedRate - 1);
+        var client = clientFactory.Create();
+        var settings = await client.SetSeedRate(SeederSettings.SeedRate - 1);
 
         SeederSettings = new SeederSettingsModel(settings);
 
@@ -40,24 +43,20 @@ public class MainViewModel(IControllerClient controllerClient) : ViewModelBase
 
     public ReactiveCommand<Unit, Unit> IncreaseSeedRateCommand => ReactiveCommand.CreateFromTask(async () =>
     {
-        var settings = await controllerClient.SetSeedRate(SeederSettings.SeedRate + 1);
+        var client = clientFactory.Create();
+        var settings = await client.SetSeedRate(SeederSettings.SeedRate + 1);
 
         SeederSettings = new SeederSettingsModel(settings);
 
         return Unit.Default;
     });
-}
 
-public class SeederSettingsModel(SeederSettings settings) : ReactiveObject
-{
-    [Reactive]
-    public int FanSpeed { get; set; } = settings.FanSpeed;
-
-    [Reactive]
-    public double SeedRate { get; set; } = settings.SeedRate;
-
-    public SeederSettings ToContract()
+    public class SeederSettingsModel(SeederSettings settings) : ReactiveObject
     {
-        return new SeederSettings { FanSpeed = FanSpeed, SeedRate = SeedRate };
+        [Reactive]
+        public int FanSpeed { get; set; } = settings.FanSpeed;
+
+        [Reactive]
+        public double SeedRate { get; set; } = settings.SeedRate;
     }
 }

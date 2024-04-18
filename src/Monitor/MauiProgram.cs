@@ -26,8 +26,11 @@ public static class MauiProgram
         builder.Services.AddSingleton<MainPage>();
         builder.Services.AddSingleton<MainViewModel>();
 
-        builder.Services.AddTransient<IControllerClient>(_ =>
-            new ControllerClient(builder.Configuration.Require(ConfigConstants.MonitorUrl)));
+        builder.Services.AddSingleton(_ =>
+            new ControllerClientFactory(new ControllerClientOptions
+            {
+                ControllerUrl = builder.Configuration.Require(ConfigConstants.ControllerUrl)
+            }));
 
 #if DEBUG
         builder.Logging.AddDebug();

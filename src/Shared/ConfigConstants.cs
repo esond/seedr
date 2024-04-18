@@ -2,5 +2,5 @@ namespace Seedr.Shared;
 
 public static class ConfigConstants
 {
-    public const string MonitorUrl = nameof(MonitorUrl);
+    public const string ControllerUrl = nameof(ControllerUrl);
 }
