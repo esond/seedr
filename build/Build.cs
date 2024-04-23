@@ -79,18 +79,18 @@ partial class Build : NukeBuild,
 
     Target PublishWindows => t => t
         .DependsOn(Setup)
-        .DependsOn<IRestore>()
         .Executes(() =>
         {
-            var framework = "net8.0-windows10.0.19041.0";
+            DotNetRestore(s => s
+                .SetRuntime("win-x64"));
 
             DotNetPublish(s => s
                 .Apply(PublishSettings)
-                .SetFramework(framework));
+                .SetNoRestore(true)
+                .SetFramework("net8.0-windows10.0.19041.0"));
         });
     Target PublishIos => t => t
         .DependsOn(Setup)
-        .DependsOn<IClean>()
         .DependsOn<IRestore>()
         .Executes(() =>
         {
