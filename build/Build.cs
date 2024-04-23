@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Hexagrams.Extensions.Common.Serialization;
 using Hexagrams.Nuke.Components;
 using Nuke.Common;
 using Nuke.Common.CI;
@@ -7,8 +8,9 @@ using Nuke.Common.IO;
 using Nuke.Common.ProjectModel;
 using Nuke.Common.Tooling;
 using Nuke.Common.Tools.DotNet;
+using Nuke.Common.Tools.GitVersion;
+using Serilog;
 using static Nuke.Common.Tools.DotNet.DotNetTasks;
-using static Nuke.Common.IO.FileSystemTasks;
 
 // ReSharper disable RedundantExtendsListEntry
 // ReSharper disable InconsistentNaming
@@ -35,9 +37,17 @@ partial class Build : NukeBuild,
 
     public static int Main() => Execute<Build>(x => ((ICompile) x).Compile);
 
+    protected override void OnBuildInitialized() => Log.Information("{VersionInfo}", GitVersion.ToJson(true));
+
+    [Required]
     [Solution]
     readonly Solution Solution;
     Solution IHasSolution.Solution => Solution;
+
+    [Required]
+    [GitVersion(NoFetch = true)]
+    readonly GitVersion GitVersion;
+    GitVersion IHasVersioning.Versioning => GitVersion;
 
     public IEnumerable<AbsolutePath> ExcludedFormatPaths => Enumerable.Empty<AbsolutePath>();
 
@@ -57,37 +67,37 @@ partial class Build : NukeBuild,
         .DependsOn<IFormat>(x => x.VerifyFormat)
         .DependsOn(Setup);
 
-    AbsolutePath MonitorAppArtifactDirectory => this.FromComponent<IHasArtifacts>().ArtifactsDirectory / "monitor-app";
+    public Project MonitorProject => Solution.GetAllProjects("Seedr.Monitor").Single();
 
-    Target Publish => t => t
+    public Configure<DotNetPublishSettings> PublishSettings => s => s
+        .SetProject(MonitorProject)
+        .SetConfiguration(this.FromComponent<IHasConfiguration>().Configuration)
+        .SetNoRestore(SucceededTargets.Contains(((IRestore) this).Restore))
+        .SetAssemblyVersion(GitVersion.AssemblySemVer)
+        .SetFileVersion(GitVersion.AssemblySemFileVer)
+        .SetInformationalVersion(GitVersion.InformationalVersion);
+
+    Target PublishWindows => t => t
         .DependsOn(Setup)
         .DependsOn<IClean>()
         .DependsOn<IRestore>()
-        .Produces(MonitorAppArtifactDirectory)
         .Executes(() =>
         {
-            var platforms = new[] { "android", "windows10.0.19041.0" };
-
-            var monitorProject = Solution.GetAllProjects("Seedr.Monitor").Single();
-
-            var versioning = this.FromComponent<IHasVersioning>().Versioning;
-            var configuration = this.FromComponent<IHasConfiguration>().Configuration;
-
-            var publishSettings = new Configure<DotNetPublishSettings>(s => s
-                .SetProject(monitorProject)
-                .SetConfiguration(configuration)
-                .SetNoRestore(SucceededTargets.Contains(((IRestore) this).Restore))
-                .SetAssemblyVersion(versioning.AssemblySemVer)
-                .SetFileVersion(versioning.AssemblySemFileVer)
-                .SetInformationalVersion(versioning.InformationalVersion));
+            var framework = "net8.0-windows10.0.19041.0";
 
             DotNetPublish(s => s
-                .Apply(publishSettings)
-                .CombineWith(platforms, (settings, platform) => settings
-                    .SetFramework($"net8.0-{platform}")));
-
-            CopyDirectoryRecursively(monitorProject.Directory / "bin" / configuration,
-                MonitorAppArtifactDirectory);
+                .Apply(PublishSettings)
+                .SetFramework(framework));
+        });
+    Target PublishIos => t => t
+        .DependsOn(Setup)
+        .DependsOn<IClean>()
+        .DependsOn<IRestore>()
+        .Executes(() =>
+        {
+            DotNetPublish(s => s
+                .Apply(PublishSettings)
+                .SetFramework("net8.0-ios"));
         });
 
     bool IReportCoverage.CreateCoverageHtmlReport => true;
