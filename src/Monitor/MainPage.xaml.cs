@@ -5,13 +5,10 @@ namespace Seedr.Monitor;
 
 public partial class MainPage : ReactiveContentPage<MainViewModel>
 {
-    public MainPage(MainViewModel viewModel)
+    public MainPage()
     {
-        ViewModel = viewModel;
-
         InitializeComponent();
 
         this.WhenActivated(_ => { });
     }
 }
-
