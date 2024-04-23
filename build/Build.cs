@@ -79,7 +79,6 @@ partial class Build : NukeBuild,
 
     Target PublishWindows => t => t
         .DependsOn(Setup)
-        .DependsOn<IClean>()
         .DependsOn<IRestore>()
         .Executes(() =>
         {
