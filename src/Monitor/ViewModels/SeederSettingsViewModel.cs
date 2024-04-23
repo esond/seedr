@@ -1,7 +1,7 @@
 using ReactiveUI;
-using Seedr.Shared.Contracts;
+using Seedr.Controller.Interface.Contracts;
 
-namespace Seedr.Monitor;
+namespace Seedr.Monitor.ViewModels;
 
 public class SeederSettingsViewModel(SeederSettings settings) : ReactiveObject
 {

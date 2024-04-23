@@ -9,13 +9,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Seedr.Monitor", "src\Monito
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "_build", "build\_build.csproj", "{98ABC887-B40E-4D59-9D04-0C5CEBF965F8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Seedr.Shared", "src\Shared\Seedr.Shared.csproj", "{34C24DC1-9168-487E-8A0D-E00C9193E107}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Controller", "Controller", "{FBFC05F9-A5D5-4283-8447-1A5E852CD33C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Seedr.Controller.Interface", "src\Controller\Interface\Seedr.Controller.Interface.csproj", "{83473473-2027-417F-A7D7-9D36A918F159}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Seedr.Controller.Service", "src\Controller\Service\Seedr.Controller.Service.csproj", "{F66253C2-6587-4B07-B1F8-26F390A5B248}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Seedr.Controller.Client", "src\Controller\Client\Seedr.Controller.Client.csproj", "{6468A09B-011A-41CA-857C-5C1EC018EDC4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,10 +30,6 @@ Global
 		{D0C25EAC-C43A-4FF5-B1C8-7CFA4B0B979F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{98ABC887-B40E-4D59-9D04-0C5CEBF965F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{98ABC887-B40E-4D59-9D04-0C5CEBF965F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{34C24DC1-9168-487E-8A0D-E00C9193E107}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{34C24DC1-9168-487E-8A0D-E00C9193E107}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{34C24DC1-9168-487E-8A0D-E00C9193E107}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{34C24DC1-9168-487E-8A0D-E00C9193E107}.Release|Any CPU.Build.0 = Release|Any CPU
 		{83473473-2027-417F-A7D7-9D36A918F159}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{83473473-2027-417F-A7D7-9D36A918F159}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{83473473-2027-417F-A7D7-9D36A918F159}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -42,16 +38,20 @@ Global
 		{F66253C2-6587-4B07-B1F8-26F390A5B248}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F66253C2-6587-4B07-B1F8-26F390A5B248}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F66253C2-6587-4B07-B1F8-26F390A5B248}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6468A09B-011A-41CA-857C-5C1EC018EDC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6468A09B-011A-41CA-857C-5C1EC018EDC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6468A09B-011A-41CA-857C-5C1EC018EDC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6468A09B-011A-41CA-857C-5C1EC018EDC4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{D0C25EAC-C43A-4FF5-B1C8-7CFA4B0B979F} = {210AA928-4DFE-4A35-AFE3-CD39486275F2}
-		{34C24DC1-9168-487E-8A0D-E00C9193E107} = {210AA928-4DFE-4A35-AFE3-CD39486275F2}
 		{FBFC05F9-A5D5-4283-8447-1A5E852CD33C} = {210AA928-4DFE-4A35-AFE3-CD39486275F2}
 		{83473473-2027-417F-A7D7-9D36A918F159} = {FBFC05F9-A5D5-4283-8447-1A5E852CD33C}
 		{F66253C2-6587-4B07-B1F8-26F390A5B248} = {FBFC05F9-A5D5-4283-8447-1A5E852CD33C}
+		{6468A09B-011A-41CA-857C-5C1EC018EDC4} = {FBFC05F9-A5D5-4283-8447-1A5E852CD33C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5AC07998-1B34-44CA-A44F-1E666B60376E}

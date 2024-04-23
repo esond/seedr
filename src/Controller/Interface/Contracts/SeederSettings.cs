@@ -1,6 +1,6 @@
 using System.Runtime.Serialization;
 
-namespace Seedr.Shared.Contracts;
+namespace Seedr.Controller.Interface.Contracts;
 
 [DataContract]
 public record SeederSettings

@@ -1,4 +1,4 @@
-namespace Seedr.Shared;
+namespace Seedr.Monitor;
 
 public static class ConfigConstants
 {

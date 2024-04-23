@@ -1,6 +1,5 @@
 using Seedr.Controller.Interface;
 using Seedr.Controller.Interface.Contracts;
-using Seedr.Shared.Contracts;
 
 namespace Seedr.Controller.Service.Services;
 

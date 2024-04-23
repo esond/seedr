@@ -1,4 +1,4 @@
-namespace Seedr.Monitor.Infrastructure;
+namespace Seedr.Controller.Client;
 
 public record ControllerClientOptions
 {

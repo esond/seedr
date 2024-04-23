@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <maui:ReactiveContentPage
-    x:TypeArguments="local:MainViewModel"
+    x:TypeArguments="viewModels:MainViewModel"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:maui="clr-namespace:ReactiveUI.Maui;assembly=ReactiveUI.Maui"
     xmlns:local="clr-namespace:Seedr.Monitor"
-    x:DataType="local:MainViewModel"
+    xmlns:viewModels="clr-namespace:Seedr.Monitor.ViewModels"
+    x:DataType="viewModels:MainViewModel"
     x:Class="Seedr.Monitor.MainPage">
 
     <ScrollView>

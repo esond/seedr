@@ -1,6 +1,6 @@
-using Seedr.Shared.Contracts;
+using Seedr.Controller.Interface.Contracts;
 
-namespace Seedr.Monitor.Infrastructure;
+namespace Seedr.Controller.Client;
 
 public interface IControllerClient
 {

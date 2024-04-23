@@ -1,4 +1,4 @@
-using Seedr.Shared.Contracts;
+using Seedr.Controller.Interface.Contracts;
 
 namespace Seedr.Controller.Service.Data;
 

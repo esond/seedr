@@ -1,8 +1,7 @@
 using Seedr.Controller.Interface;
 using Seedr.Controller.Interface.Contracts;
-using Seedr.Shared.Contracts;
 
-namespace Seedr.Monitor.Infrastructure;
+namespace Seedr.Controller.Client;
 
 public class ControllerClient(IControllerService proxy) : IControllerClient
 {

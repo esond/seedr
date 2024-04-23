@@ -2,7 +2,7 @@ using System.Reactive.Concurrency;
 using ReactiveUI;
 using Splat;
 
-namespace Seedr.Monitor;
+namespace Seedr.Monitor.ViewModels;
 
 public abstract class ViewModelBase : ReactiveObject, IRoutableViewModel, IActivatableViewModel
 {

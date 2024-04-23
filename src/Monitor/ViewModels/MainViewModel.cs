@@ -1,11 +1,11 @@
 using System.Reactive;
 using System.Reactive.Concurrency;
 using ReactiveUI;
-using Seedr.Monitor.Infrastructure;
-using Seedr.Shared.Contracts;
+using Seedr.Controller.Client;
+using Seedr.Controller.Interface.Contracts;
 using Splat;
 
-namespace Seedr.Monitor;
+namespace Seedr.Monitor.ViewModels;
 
 public class MainViewModel : ViewModelBase
 {

@@ -1,7 +1,7 @@
 using Hexagrams.Extensions.Configuration;
 using ReactiveUI;
-using Seedr.Monitor.Infrastructure;
-using Seedr.Shared;
+using Seedr.Controller.Client;
+using Seedr.Monitor.ViewModels;
 using Splat;
 
 namespace Seedr.Monitor;
@@ -15,7 +15,9 @@ public static class AppBootstrapper
     {
         var router = new RoutingState();
         var screen = new AppBootstrapScreen(router);
+
         Locator.CurrentMutable.RegisterConstant(screen, typeof(IScreen));
+
         Locator.CurrentMutable.Register(() => new MainPage(), typeof(IViewFor<MainViewModel>));
         Locator.CurrentMutable.Register(() => new ControllerClientFactory(new ControllerClientOptions
         {

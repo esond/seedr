@@ -2,7 +2,7 @@ using Grpc.Net.Client;
 using ProtoBuf.Grpc.Client;
 using Seedr.Controller.Interface;
 
-namespace Seedr.Monitor.Infrastructure;
+namespace Seedr.Controller.Client;
 
 public class ControllerClientFactory(ControllerClientOptions options) : IDisposable
 {

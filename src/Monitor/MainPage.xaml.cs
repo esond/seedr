@@ -1,5 +1,6 @@
 using ReactiveUI;
 using ReactiveUI.Maui;
+using Seedr.Monitor.ViewModels;
 
 namespace Seedr.Monitor;
 
